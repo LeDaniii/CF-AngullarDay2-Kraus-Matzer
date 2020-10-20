@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'main-page',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  carCard = new FormGroup({
+    name: new FormControl('', Validators.required),
+    img: new FormControl('', Validators.required),
+  });
   constructor() {}
 
   cars = [
@@ -28,4 +33,12 @@ export class MainPageComponent implements OnInit {
   ];
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    let CarName = this.carCard.value.CardName;
+    let CarImg = this.carCard.value.CardImg;
+    let obj = this.carCard.value;
+
+    this.cars.push(obj);
+  }
 }
